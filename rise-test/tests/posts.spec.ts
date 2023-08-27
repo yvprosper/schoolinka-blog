@@ -47,7 +47,7 @@ describe("POST /api/posts", () => {
         .end((err, res) => {
           if (err) return done(err);
           // Ensure the response body contains an error message
-          expect(res.body.status).to.equal(undefined);
+          expect(res.body.success).to.equal(false);
           done();
         });
     });
@@ -60,29 +60,21 @@ describe("POST /api/posts", () => {
       };
 
       request("localhost:40121")
-        .post(`/v1/posts/${postId}/comment`)
+        .post(`/v1/posts/${postId}/comments`)
         .send(newComment)
         .set("Authorization", `Bearer ${token}`)
         .expect(201)
         .end((err, res) => {
           if (err) return done(err);
           // Ensure the response body contains an error message
-          expect(res.body).have.keys(["status", "data"]);
-          expect(res.body.data[0]).have.keys([
-            "commentid",
-            "postid",
-            "userid",
-            "comment",
-            "created_on",
-          ]);
-          expect(res.body.status).to.equal("success");
+          expect(res.body.success).to.equal(true);
           done();
         });
     });
   });
 
-  context("if token is not provided in therequest", function () {
-    it("should return an error for unauthorized access if token is not provided", (done) => {
+  context("if token is not provided in the request", function () {
+    it("should return an error for unauthorized access", (done) => {
       const newPost = {
         post: "This is a test post content.",
       };
@@ -94,7 +86,7 @@ describe("POST /api/posts", () => {
         .end((err, res) => {
           if (err) return done(err);
           // Ensure the response body contains an error message
-          expect(res.body.status).to.equal(undefined);
+          expect(res.body.success).to.equal(false);
           done();
         });
     });

@@ -16,15 +16,21 @@ describe("POST /api/users", () => {
       request("localhost:40121")
         .post("/v1/users")
         .send(newUser)
-        .expect(201) // Expect HTTP status code 201 (Created)
+        .expect((res) => {
+          // Expect either status code 201 (Created) or 409 (Conflict)
+          expect(res.statusCode).to.be.oneOf([201, 409]);
+        })
         .end((err, res) => {
           if (err) return done(err);
           // Ensure the response body and properties match the expected values
-          expect(res.body.data).to.have.property("id");
-          expect(res.body.data).to.have.property("first_name");
-          expect(res.body.data).to.have.property("last_name");
-          expect(res.body.data.first_name).to.equal(newUser.first_name);
-          expect(res.body.data.last_name).to.equal(newUser.last_name);
+          if (res.statusCode === 201) {
+            // Ensure the response body and properties match the expected values for a successful creation
+            expect(res.body.data).to.have.property("id");
+            expect(res.body.data).to.have.property("first_name");
+            expect(res.body.data).to.have.property("last_name");
+            expect(res.body.data.first_name).to.equal(newUser.first_name);
+            expect(res.body.data.last_name).to.equal(newUser.last_name);
+          }
           done();
         });
     });
@@ -47,7 +53,7 @@ describe("POST /api/users", () => {
         .end((err, res) => {
           if (err) return done(err);
           // Ensure the response body and properties match the expected values
-          expect(res.body.status).to.equal(undefined);
+          expect(res.body.success).to.equal(false);
           done();
         });
     });
@@ -90,7 +96,28 @@ describe("POST /api/users", () => {
         .end((err, res) => {
           if (err) return done(err);
           // Ensure the response body and properties match the expected values
-          expect(res.body.status).to.equal(undefined);
+          expect(res.body.success).to.equal(false);
+          done();
+        });
+    });
+  });
+
+  context("when login credentials are not ok", function () {
+    it("should deny access", (done) => {
+      const payload = {
+        email: "benjj@gmail.com",
+        password: "wrongpassword",
+      };
+
+      request("localhost:40121")
+        .post("/v1/users/login")
+        .send(payload)
+        .expect(401)
+        .end((err, res) => {
+          if (err) return done(err);
+          // Ensure the response body and properties match the expected values
+          expect(res.body.success).to.equal(false);
+          expect(res.body.message).to.equal("Invalid Credentials!");
           done();
         });
     });

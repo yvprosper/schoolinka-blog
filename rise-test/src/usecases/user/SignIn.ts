@@ -1,10 +1,10 @@
 import UserRepository from "../../infra/repository/UserRepository";
 import { PoolClient, QueryResult } from "pg";
 import Config from "../../../config/default";
-import NotFoundError from "../../interface/http/errors/NotFound";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import BadRequestError from "../../interface/http/errors/BadRequest";
+import UnauthorizedError from "../../interface/http/errors/Unauthorized";
 import {
   validateAuthPayload,
   Auth,
@@ -40,11 +40,11 @@ class SignIn {
           [email]
         );
         const user = rows[0];
-        if (!user) throw new NotFoundError("invalid credentials!");
+        if (!user) throw new UnauthorizedError("Invalid Credentials!");
         // Validate password
         const validatePassword: boolean = await bcrypt.compare(password, user.password);
         if (!validatePassword) {
-          throw new BadRequestError("Invalid Credential");
+          throw new UnauthorizedError("Invalid Credentials!");
         }
         // sign token
         const secret: string | undefined = Config.jwtSecret;
