@@ -32,7 +32,8 @@ Access `http://localhost:<PORT>` and you're ready to go!
 2. install neccesary dependencies using `yarn install`
 3. create `.env` file in root directory, populate with variables values in the `.env.example` file 
 4. start the server locally using `yarn start:dev`
-5. Access the default url with `http://localhost:40121`
+5. Access the default url with `http://localhost:<PORT>` 
+> http://localhost:40121/
 
 
 ## Overview 
