@@ -573,7 +573,7 @@ router.route("/").get(verifyToken, api("getAll")).post(api("create"));
    *    {
    *       "firstName": "John",
    *       "lastName": "Jerome",
-   *       "gender": "male",
+   *       "gender": "male"
    *    }
    * 
    * @apiUse UnauthorizedError

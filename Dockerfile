@@ -11,6 +11,6 @@ COPY . .
 
 RUN NODE_ENV=production yarn build && yarn build:docs
 
-EXPOSE 30029 30030
+EXPOSE 40121 40122
 
 CMD [ "node", "build/src/start.js" ]

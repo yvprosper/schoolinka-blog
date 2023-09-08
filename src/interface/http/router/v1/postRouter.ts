@@ -35,7 +35,7 @@ const router = express.Router();
    * @apiParamExample Sample Request:
    *    {
    *         "title": "This is a test post title.",
-   *         "post": "This is a test post content.",
+   *         "post": "This is a test post content."
    *    }
    * 
    * @apiHeader {String} authorization Users bearer access token.
@@ -355,7 +355,7 @@ router.get("/search", verifyToken, api("searchAndFilter"));
    * @apiParamExample Sample Request:
    *    {
    *         "title": "This is a test post title update.",
-   *         "post": "This is a test post content update.",
+   *         "post": "This is a test post content update."
    *    }
    * 
    * @apiHeader {String} authorization Users bearer access token.

@@ -15,7 +15,6 @@
   "dependencies": {
     "@hapi/joi-date": "^2.0.1",
     "@types/hapi__joi": "^17.1.8",
-    "apidoc": "^1.2.0",
     "auto-bind-inheritance": "^1.0.6",
     "awilix": "^6.0.0",
     "awilix-express": "^6.0.0",
@@ -67,6 +66,7 @@
     "@types/validator": "^13.11.1",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
+    "apidoc": "0.25.0",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
