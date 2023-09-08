@@ -176,7 +176,7 @@ router.route("/").get(verifyToken, api("getAllPosts")).post(verifyToken, api("cr
    * @apiVersion 1.0.0
    * @apiParam (Query) {Number} [page = 1]                  Page to display.
    * @apiParam (Query) {Number} [limit = 20]                Number of documents to return per page.
-   * @apiParam (Query) {String} [title]                     Search posts by title or post body
+   * @apiParam (Query) {String} [keyword]                   Search posts by title or post content
    * @apiParam (Query) {String} [startDate]                 Filter posts by date created.
    * @apiParam (Query) {String} [endDate]                   Filter posts by date created.
    * @apiSuccessExample Success Response:

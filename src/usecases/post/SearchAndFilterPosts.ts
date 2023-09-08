@@ -19,13 +19,13 @@ class SearchAndFilterPosts {
         const { error }: ValidationResult = await validateSearchPostPayload(payload);
         if (error) throw new BadRequestError(`${error.details[0].message}`);
 
-        const { title, page, limit, startDate, endDate } = payload;
+        const { keyword, page, limit, startDate, endDate } = payload;
         let clause: IQueryOptions = {};
-        if (title) {
+        if (keyword) {
           clause = {
             [Op.or]: [
-              { title: { [Op.iLike]: `%${title}%` } },
-              { post: { [Op.iLike]: `%${title}%` } },
+              { title: { [Op.iLike]: `%${keyword}%` } },
+              { post: { [Op.iLike]: `%${keyword}%` } },
             ],
           };
         }

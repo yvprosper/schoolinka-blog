@@ -68,9 +68,16 @@ export interface IPostController {
   deletePost: typeof deletePost;
   searchAndFilterPosts: typeof searchAndFilterPosts;
 }
-
+interface Error {
+  name: string;
+  details: object;
+}
 export interface IError extends Error {
   status?: number;
+  error?: Error;
+  errors?: object;
+  data?: object;
+  message?: string;
 }
 
 export interface IUser {
@@ -91,7 +98,7 @@ export interface IUserQueryOptions {
 }
 
 export interface IPostQueryOptions {
-  title?: string | object;
+  keyword?: string | object;
   page?: number;
   limit?: number;
   startDate?: string;

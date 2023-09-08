@@ -71,7 +71,7 @@ export const validateSearchPostPayload = async (
   post: IPostQueryOptions
 ): Promise<ValidationResult> => {
   const schema = Joi.object({
-    title: Joi.string(),
+    keyword: Joi.string(),
     limit: Joi.number().integer().min(1).default(20),
     page: Joi.number().integer().min(1).default(1),
     startDate: Joi.date().format("YYYY-MM-DD").utc(),
