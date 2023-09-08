@@ -1,15 +1,15 @@
-# Rise Blog Service
+# Schoolinka Blog Service
 
 RESTful API with Domain Driven Design
 
 ## Development Environment Setup
 
 1. Make sure you have nvm, node v18.17.0 or LTS version of node installed
-2. Install yarn - npm install -g yarn.
+2. Install `yarn` - `npm install -g yarn`.
 
 
 ## Documentation
-Find the postman documentation [HERE](https://documenter.getpostman.com/view/16946617/2s9Y5YS3DR)
+Find the API documentation [HERE](https://schoolinka-blog.onrender.com/docs)
 
 ## Docker support
 
@@ -18,21 +18,26 @@ Find the postman documentation [HERE](https://documenter.getpostman.com/view/169
 1. [Docker](https://www.docker.com/products/docker-engine) Community Edition v17 or higher
 
 ```sh
-$ docker-compose up
+$ docker build -t schoolinka-blog-service  .
+$ docker run -p 40121:40121 --env-file=.env  schoolinka-blog-service
 ```
+
+Access `http://localhost:<PORT>` and you're ready to go!
+
+> http://localhost:40121/
 
 
 ## Quick Start
-1. to clone the project `git clone https://github.com/solomon-prosperity/rise-vest-test.git`
-2. Run `docker-compose up` and you are ready to go.  OR cd to the `rise-test` directory and do the steps below
-3. install neccesary dependencies using `yarn install`
+1. to clone the project `git clone https://github.com/solomon-prosperity/scholinka-blog.git`
+2. install neccesary dependencies using `yarn install`
+3. create `.env` file in root directory, populate with variables values in the `.env.example` file 
 4. start the server locally using `yarn start:dev`
-5. Access the default url with `http://localhost:5000`
+5. Access the default url with `http://localhost:40121`
 
 
 ## Overview 
 - uses Node.js > v16
-- written using ES6
+- written using ES6 and Typescript
 - uses Yarn for package dependency management
 
 
@@ -52,7 +57,7 @@ $ docker-compose up
 
 - Http-status - Utility to interact with HTTP status code.
 
-- pg - PostgreSQL driver for Nodejs.
+- Sequelize - Sequelize is a modern TypeScript and Node.js ORM for Oracle, Postgres, MySQL, MariaDB, SQLite and SQL Server, and more. Featuring solid transaction support, relations, eager and lazy loading, read replication and more.
 
 - Dayjs - Parse, validate, manipulate, and display dates and times in JavaScript.
 
