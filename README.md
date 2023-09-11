@@ -28,7 +28,7 @@ Access `http://localhost:<PORT>` and you're ready to go!
 
 
 ## Quick Start
-1. to clone the project `git clone https://github.com/solomon-prosperity/scholinka-blog.git`
+1. to clone the project `git clone https://github.com/yvprosper/schoolinka-blog.git`
 2. install neccesary dependencies using `yarn install`
 3. create `.env` file in root directory, populate with variables values in the `.env.example` file 
 4. start the server locally using `yarn start:dev`
